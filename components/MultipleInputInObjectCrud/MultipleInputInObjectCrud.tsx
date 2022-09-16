@@ -1,43 +1,45 @@
 import React from 'react';
-import { ChangeEvent } from 'react';
 import styled from 'styled-components';
-import TwoInputCrudList from './TwoInputCrudList';
+import { ChangeEvent } from 'react';
+import MultipleInputList from './MulitpleInputList';
 
-type Props = {};
+let nextId = 0;
 
-export interface IarticleList {
-  id: number;
+interface Iforms {
   articleName: string;
   articleContent: string;
 }
 
-const TwoInputCrud = (props: Props) => {
-  const [articleName, setArticleName] = React.useState<string>('');
-  const [articleContent, setArticleContent] = React.useState<string>('');
-  const [articleList, setArticleList] = React.useState<IarticleList[]>([]);
+export interface Iarticle {
+  id?: number;
+  articleName: string;
+  articleContent: string;
+}
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
-    if (e.target.name === 'articleName') {
-      setArticleName(e.target.value);
-    } else {
-      setArticleContent(e.target.value);
-    }
+const MultipleInputInObjectCrud = () => {
+  const [form, setForm] = React.useState<Iforms>({
+    articleName: '',
+    articleContent: '',
+  });
+  const [articles, setArticles] = React.useState<Iarticle[]>([]);
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
   };
-
-  let nextId = 0;
 
   const handleAddArticle = e => {
     e.preventDefault();
-    setArticleList([
-      ...articleList,
+    setArticles([
+      ...articles,
       {
         id: nextId++,
-        articleName: articleName,
-        articleContent: articleContent,
+        articleName: form.articleName,
+        articleContent: form.articleContent,
       },
     ]);
-    setArticleName('');
-    setArticleContent('');
   };
 
   return (
@@ -48,7 +50,7 @@ const TwoInputCrud = (props: Props) => {
           <Input
             type="text"
             name="articleName"
-            value={articleName}
+            value={form.articleName}
             onChange={handleChange}
           />
         </Label>
@@ -57,14 +59,14 @@ const TwoInputCrud = (props: Props) => {
           <Input
             type="text"
             name="articleContent"
-            value={articleContent}
+            value={form.articleContent}
             onChange={handleChange}
           />
         </Label>
         <AddButton onClick={handleAddArticle}>Submit</AddButton>
       </Form>
       {/* ARTICLE LIST */}
-      <TwoInputCrudList list={articleList} />
+      <MultipleInputList list={articles} />
     </>
   );
 };
@@ -84,4 +86,4 @@ const AddButton = styled.button`
   font-size: 1.2rem;
 `;
 
-export default TwoInputCrud;
+export default MultipleInputInObjectCrud;

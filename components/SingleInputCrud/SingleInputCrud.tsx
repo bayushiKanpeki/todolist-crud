@@ -28,7 +28,6 @@ const SingleInputCrud = () => {
 
   return (
     <>
-      <Spacer size={64} />
       {/* FORM ADDER */}
 
       <Form>

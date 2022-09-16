@@ -4,18 +4,37 @@ import React from 'react';
 import Spacer from '../components/Spacer';
 import SingleInputCrud from 'components/SingleInputCrud';
 import TwoInputCrud from 'components/TwoInputCrud/TwoInputCrud';
+import MultipleInputInObjectCrud from 'components/MultipleInputInObjectCrud';
 
 const Home: NextPage = () => {
   return (
     <PageWrapper>
-      <h1>SingleInputCrud</h1>
-      <SingleInputCrud />
-      <h1>TwoInputCrud</h1>
-      <TwoInputCrud />
+      <div>
+        <Title>SingleInputCrud</Title>
+        <SingleInputCrud />
+      </div>
+      <div>
+        <Title>TwoInputCrud</Title>
+        <TwoInputCrud />
+      </div>
+      <div>
+        <Title>Multiple Input on Object</Title>
+        <MultipleInputInObjectCrud />
+      </div>
     </PageWrapper>
   );
 };
 
-const PageWrapper = styled.main``;
+const PageWrapper = styled.main`
+  margin-top: 64px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+`;
+
+const Title = styled.h1`
+  margin-bottom: 32px;
+  font-size: 1.5rem;
+  text-decoration: underline;
+`;
 
 export default Home;

@@ -1,12 +1,12 @@
 import React from 'react';
-import { IarticleList } from './TwoInputCrud';
 import styled from 'styled-components';
+import { Iarticle } from './MultipleInputInObjectCrud';
 
-interface Props {
-  list: IarticleList[];
+interface Prop {
+  list: Iarticle[];
 }
 
-const TwoInputCrudList = ({ list }: Props) => {
+const MultipleInputList = ({ list }: Prop) => {
   return (
     <ListSection>
       {list.map(list => (
@@ -25,4 +25,4 @@ const Article = styled.article`
   margin-top: 32px;
 `;
 
-export default TwoInputCrudList;
+export default MultipleInputList;
