@@ -1,7 +1,7 @@
 import Spacer from 'components/Spacer';
 import React from 'react';
 import styled from 'styled-components';
-import SingleInputCrudList from './SingleInputCrud.list';
+import SingleInputCrudList from './SingleInputCrudList';
 
 export interface IList {
   listTitle: string;
