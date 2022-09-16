@@ -1,21 +1,17 @@
 import styled from 'styled-components';
 import type { NextPage } from 'next';
+import React from 'react';
+import Spacer from '../components/Spacer';
+import SingleInputCrud from 'components/SingleInputCrud';
 
 const Home: NextPage = () => {
   return (
-    <>
-      <Title>This is a Sample Page</Title>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus
-        neque, ab eligendi natus nostrum optio.
-      </p>
-    </>
+    <PageWrapper>
+      <SingleInputCrud />
+    </PageWrapper>
   );
 };
 
-const Title = styled.h1`
-  font-size: 50px;
-  color: ${({ theme }) => theme.colors.primary};
-`;
+const PageWrapper = styled.main``;
 
 export default Home;
