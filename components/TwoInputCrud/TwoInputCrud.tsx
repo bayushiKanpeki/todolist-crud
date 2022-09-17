@@ -5,6 +5,8 @@ import TwoInputCrudList from './TwoInputCrudList';
 
 type Props = {};
 
+let nextId = 0;
+
 export interface IarticleList {
   id: number;
   articleName: string;
@@ -24,8 +26,7 @@ const TwoInputCrud = (props: Props) => {
     }
   };
 
-  let nextId = 0;
-
+  // ADD ARTICLE
   const handleAddArticle = e => {
     e.preventDefault();
     setArticleList([
@@ -38,6 +39,11 @@ const TwoInputCrud = (props: Props) => {
     ]);
     setArticleName('');
     setArticleContent('');
+  };
+
+  // DELETE ARTICLE
+  const handleDelete = (articleListId: number): void => {
+    setArticleList(articleList.filter(a => a.id !== articleListId));
   };
 
   return (
@@ -64,7 +70,7 @@ const TwoInputCrud = (props: Props) => {
         <AddButton onClick={handleAddArticle}>Submit</AddButton>
       </Form>
       {/* ARTICLE LIST */}
-      <TwoInputCrudList list={articleList} />
+      <TwoInputCrudList list={articleList} handleDelete={handleDelete} />
     </>
   );
 };

@@ -14,6 +14,7 @@ const SingleInputCrud = () => {
   const [singleValueForm, setSingleValueForm] = React.useState<string>('');
   const [list, setList] = React.useState<IList[]>([]);
 
+  // ADD A LIST
   const handleAddList = e => {
     e.preventDefault();
     setList([
@@ -62,7 +63,7 @@ const Input = styled.input`
 
 const AddButton = styled.button`
   background: gainsboro;
-  padding: 12px 16px;
+  padding: 8px 16px;
   border-radius: 4px;
 
   font-size: 1.2rem;
