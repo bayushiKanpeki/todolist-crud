@@ -4,8 +4,11 @@ import styled from 'styled-components';
 import SingleInputCrudList from './SingleInputCrudList';
 
 export interface IList {
+  id: number;
   listTitle: string;
 }
+
+let nextId = 0;
 
 const SingleInputCrud = () => {
   const [singleValueForm, setSingleValueForm] = React.useState<string>('');
@@ -16,6 +19,7 @@ const SingleInputCrud = () => {
     setList([
       ...list,
       {
+        id: nextId++,
         listTitle: singleValueForm,
       },
     ]);
@@ -24,6 +28,11 @@ const SingleInputCrud = () => {
 
   const handleChange = e => {
     setSingleValueForm(e.target.value);
+  };
+
+  // DELETE
+  const handleDelete = (listId: number): void => {
+    setList(list.filter(l => l.id !== listId));
   };
 
   return (
@@ -39,7 +48,7 @@ const SingleInputCrud = () => {
       </Form>
       {/* LIST */}
 
-      <SingleInputCrudList list={list} />
+      <SingleInputCrudList list={list} handleDelete={handleDelete} />
     </>
   );
 };
