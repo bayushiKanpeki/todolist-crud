@@ -3,19 +3,39 @@ import { IList } from './SingleInputCrud';
 import styled from 'styled-components';
 
 interface Props {
-  list: IList[];
+  lists: IList[];
   handleDelete: (listId: number) => void;
 }
 
-const SingleInputCrudList = ({ list, handleDelete }: Props) => {
+const SingleInputCrudList = ({ lists, handleDelete }: Props) => {
+  let listContent;
+  // const [isEditing, setIsEditing] = React.useState(false);
+
+  // if (isEditing) {
+  //   listContent = (
+  //     <>
+  //       <input />
+  //       <button onClick={() => setIsEditing(false)}>Save</button>
+  //     </>
+  //   );
+  // } else {
+  //   listContent = (
+  //     <>
+  //       {lists.listTitle}{' '}
+  //       <button onClick={() => setIsEditing(true)}>Edit</button>
+  //     </>
+  //   );
+  // }
+
   return (
     <ListSection>
-      {list.map(list => (
+      {lists.map(list => (
         <ArticleContainer key={list.id}>
           <h1>{list.listTitle}</h1>
           <DeleteButton onClick={() => handleDelete(list.id)}>
             delete
           </DeleteButton>
+          <EditButton>edit</EditButton>
         </ArticleContainer>
       ))}
     </ListSection>
@@ -31,6 +51,11 @@ const ArticleContainer = styled.article`
 `;
 
 const DeleteButton = styled.button`
+  padding: 8px 16px;
+  background: gainsboro;
+`;
+
+const EditButton = styled.button`
   padding: 8px 16px;
   background: gainsboro;
 `;

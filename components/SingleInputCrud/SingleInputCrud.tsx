@@ -12,13 +12,13 @@ let nextId = 0;
 
 const SingleInputCrud = () => {
   const [singleValueForm, setSingleValueForm] = React.useState<string>('');
-  const [list, setList] = React.useState<IList[]>([]);
+  const [lists, setLists] = React.useState<IList[]>([]);
 
   // ADD A LIST
   const handleAddList = e => {
     e.preventDefault();
-    setList([
-      ...list,
+    setLists([
+      ...lists,
       {
         id: nextId++,
         listTitle: singleValueForm,
@@ -33,7 +33,7 @@ const SingleInputCrud = () => {
 
   // DELETE
   const handleDelete = (listId: number): void => {
-    setList(list.filter(l => l.id !== listId));
+    setLists(lists.filter(l => l.id !== listId));
   };
 
   return (
@@ -49,7 +49,7 @@ const SingleInputCrud = () => {
       </Form>
       {/* LIST */}
 
-      <SingleInputCrudList list={list} handleDelete={handleDelete} />
+      <SingleInputCrudList lists={lists} handleDelete={handleDelete} />
     </>
   );
 };

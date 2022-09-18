@@ -30,6 +30,7 @@ const MultipleInputInObjectCrud = () => {
     });
   };
 
+  // ADD ARTICLE
   const handleAddArticle = e => {
     e.preventDefault();
     setArticles([
@@ -40,6 +41,11 @@ const MultipleInputInObjectCrud = () => {
         articleContent: form.articleContent,
       },
     ]);
+  };
+
+  // DELETE ARTICLE
+  const handleDelete = (articleId: number) => {
+    setArticles(articles.filter(a => a.id !== articleId));
   };
 
   return (
@@ -66,7 +72,7 @@ const MultipleInputInObjectCrud = () => {
         <AddButton onClick={handleAddArticle}>Submit</AddButton>
       </Form>
       {/* ARTICLE LIST */}
-      <MultipleInputList list={articles} />
+      <MultipleInputList list={articles} handleDelete={handleDelete} />
     </>
   );
 };
